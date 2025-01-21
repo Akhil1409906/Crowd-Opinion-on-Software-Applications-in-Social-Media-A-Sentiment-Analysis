@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotion Prediction</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #eaedf0;
+      color: #0e0c0c;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      margin-bottom: 20px;
+      background-color: #fcf8f8;
+      padding: 15px 20px;
+      border-bottom: 2px solid #f2eeee;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #171414;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: 2px solid transparent;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: #444;
+      border-color: #e0e0e0;
+      color: #fff;
+    }
+
+    .container {
+      margin-top: 80px;
+      padding: 40px;
+      background: #faf7f7;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .container h2 {
+      color: #141111;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .form-control {
+      background-color: #fefbfb;
+      color: #faf7f7;
+      border: 1px solid #444;
+      margin-top:50px;
+      
+    }
+
+    .form-control:focus {
+      background-color: #f9f6f6;
+      border-color: #0c0b0b;
+      color: #0e0c0c;
+      box-shadow: none;
+    }
+
+    .btn-primary {
+  background-color: #4a6ad3;
+  border: none;
+  padding: 10px 20px;
+  width: 200px; /* Adjust width as needed */
+  margin: 0 auto; /* Center the button horizontally */
+  display: block; /* Ensures the button behaves as a block element */
+  transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+      background-color: #151416;
+    }
+
+    .prediction-result {
+      background: #fbfafa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border: 1px solid #444;
+    }
+
+    .prediction-result h4 {
+      margin: 0;
+      color: #191515;
+    }
+
+    .emotion-icon {
+      font-size: 4rem;
+      color: #ff6f00;
+    }
+
+    .emotion-result {
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Home</a>
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+      <a href="/predict">Predict</a>
+      <a href="/chart">Chart</a>
+      <a href="/about">About</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2 class="text-center">Emotion Prediction</h2>
+
+    <!-- Prediction Form -->
+    <form method="POST" action="/predict">
+      <div class="mb-4">
+        <label for="inputText" class="form-label">Enter Text for Emotion Prediction</label>
+        <textarea class="form-control" id="inputText" name="text" rows="5" required></textarea>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Predict Emotion</button>
+      </div>
+    </form>
+
+    {% if predicted_emotion %}
+      <!-- Display Predicted Emotion -->
+      <div class="prediction-result">
+        <!-- Emotion Icon -->
+        <div class="emotion-icon">
+          {{ emoji }}
+        </div>
+
+        <!-- Emotion Text -->
+        <div class="emotion-result">
+          <h4>{{ predicted_emotion }}</h4>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <footer>
+    &copy; 2024 Emotion Prediction App. All rights reserved.
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

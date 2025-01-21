@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form UI</title>
+    <link rel="stylesheet" href="styler.css">
+    <!-- FontAwesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        user-select: none;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      /* Navbar Styles */
+      nav {
+        padding: 10px 20px;
+        text-align: right;  /* Align text to the right */
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: transparent; /* Remove the background image */
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end;  /* Align the items to the right */
+      }
+
+      nav ul li {
+        margin: 0 20px;
+        font-size: 18px;
+        display: inline-block;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 1px;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent rectangular box */
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        background-color: #3498db;  /* Change to your hover color */
+        color: white;  /* Keep text white on hover */
+      }
+
+      /* Background for the Registration Page */
+      .bg-img {
+        background: url('static/img1.jpg') no-repeat center center/cover;
+        height: 100vh;
+        position: relative;
+      }
+
+      .bg-img:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 60px 32px;
+        width: 370px;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0px 4px 28px rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(10px); /* Blurring effect */
+        border-radius: 10px;
+        z-index: 1;
+      }
+
+      .content header {
+        color: white;
+        font-size: 33px;
+        font-weight: 600;
+        margin-bottom: 35px;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .field {
+        position: relative;
+        height: 45px;
+        width: 100%;
+        display: flex;
+        background: rgba(255, 255, 255, 0.94);
+        border-radius: 5px;
+        margin-bottom: 16px;
+      }
+
+      .field span {
+        color: #222;
+        width: 40px;
+        line-height: 45px;
+      }
+
+      .field input {
+        height: 100%;
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #222;
+        font-size: 16px;
+        padding-left: 10px;
+      }
+
+      .space {
+        margin-top: 16px;
+      }
+
+      .show {
+        position: absolute;
+        right: 13px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #222;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        display: none;
+      }
+
+      .pass-key:valid ~ .show {
+        display: block;
+      }
+
+      .pass {
+        text-align: left;
+        margin: 10px 0;
+      }
+
+      .pass a {
+        color: white;
+        text-decoration: none;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .pass:hover a {
+        text-decoration: underline;
+      }
+
+      .field input[type="submit"] {
+        background: #3498db;
+        border: 1px solid #2691d9;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        border-radius: 5px;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      .field input[type="submit"]:hover {
+        background: #2691d9;
+      }
+
+      .login {
+        color: white;
+        margin: 20px 0;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .signup {
+        font-size: 15px;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .signup a {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      .signup a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .content {
+          width: 90%;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/register">Register</a></li>
+      </ul>
+    </nav>
+
+    <div class="bg-img">
+      <div class="content">
+        <header>Register Form</header>
+        <form id="registerForm">
+          <div class="field">
+            <span class="fa fa-user"></span>
+            <input type="text" name="username" id="username" required placeholder="Username">
+          </div>
+          <div class="field">
+            <span class="fa fa-envelope"></span>
+            <input type="email" name="email" id="email" required placeholder="Email">
+          </div>
+          <div class="field space">
+            <span class="fa fa-lock"></span>
+            <input type="password" name="password" id="password" class="pass-key" required placeholder="Password">
+            <span class="show">SHOW</span>
+          </div>
+          <div class="field space">
+            <span class="fa fa-lock"></span>
+            <input type="password" name="confirmPassword" id="confirmPassword" class="pass-key" required placeholder="Confirm Password">
+          </div>
+          <div class="field">
+            <input type="submit" value="REGISTER">
+          </div>
+        </form>
+        <div class="login">Already have an account? <a href="/login">Login Now</a></div>
+      </div>
+    </div>
+
+    <script>
+      const passFields = document.querySelectorAll('.pass-key');
+      const showBtns = document.querySelectorAll('.show');
+
+      showBtns.forEach((showBtn, index) => {
+        showBtn.addEventListener('click', function() {
+          const passField = passFields[index];
+          if (passField.type === "password") {
+            passField.type = "text";
+            showBtn.textContent = "HIDE";
+            showBtn.style.color = "#3498db";
+          } else {
+            passField.type = "password";
+            showBtn.textContent = "SHOW";
+            showBtn.style.color = "#222";
+          }
+        });
+      });
+
+      const form = document.getElementById('registerForm');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Store the data in localStorage
+        localStorage.setItem('username', username);
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+
+        // Redirect to login.html
+        window.location.href = '/login';
+      });
+    </script>
+  </body>
+</html>
